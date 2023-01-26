@@ -15,18 +15,76 @@ function divide(a, b) {
 }
 
 function operate(operator, a ,b) {
+    let result;
     switch (operator) {
         case "+":
-            return add(a, b);
+            result = add(a, b);
+            break;
 
         case "-":
-            return subtract(a, b);
+            result = subtract(a, b);
+            break;
 
         case "*":
-            return multiply(a, b);
+            result = multiply(a, b);
+            break;
 
         case "/":
-            return divide(a, b);
+            result = divide(a, b);
+            break;
 
     }
+    operandTwo = undefined;
+    operator = undefined;
+    operandOne = result;
+    display.textContent = result;
+    return result;
+}
+
+let operandOne;
+let operandTwo;
+let operator;
+
+let display = document.querySelector("#display");
+
+
+let equalsButton = document.querySelector("#equalsButton");
+equalsButton.addEventListener("click", e => {
+    if (operandOne && operandTwo && operator) {
+        operate(operator, operandOne, operandTwo);
+    }});
+
+let numberButtons = document.querySelectorAll(".numberButton");
+for (let i = 0; i < numberButtons.length; i++) {
+    numberButtons[i].addEventListener("click", e => {
+        if (!operandOne) {
+            operandOne = parseInt(e.target.textContent);
+            display.textContent = operandOne;
+        }
+
+        else if (!operator) {
+            operandOne = parseInt(operandOne + e.target.textContent);
+            display.textContent = operandOne;
+        }
+        else if (operator && !operandTwo) {
+            operandTwo = parseInt(e.target.textContent);
+            display.textContent = operandOne + ` ${operator} ` + operandTwo;
+        }
+        else {
+            operandTwo = parseInt(operandTwo + e.target.textContent);
+            display.textContent = operandOne + ` ${operator} ` + operandTwo;
+        }
+
+    });
+}
+
+let operatorButtons = document.querySelectorAll(".operatorButton");
+for (let i = 0; i < operatorButtons.length; i++) {
+    operatorButtons[i].addEventListener("click", e => {
+        if (operandOne && operandTwo && operator) {
+            operate(operator, operandOne, operandTwo);
+        }
+        operator = e.target.textContent;
+        display.textContent = operandOne + ` ${operator} `; 
+    })
 }
