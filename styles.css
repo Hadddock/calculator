@@ -1,0 +1,37 @@
+
+
+
+
+
+#calculatorContainer {
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+}
+#resultDisplay {
+    box-sizing: border-box;
+    justify-content:flex-end;
+    align-items:center;
+    display:flex;
+  
+    padding:20px;
+    height:100px;
+    width:400px;
+    background-color:bisque;
+    font-size:40px;
+    border: 1px solid black;
+}
+.buttonRow {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.calculatorButton {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    align-self:center;
+    width:100px;
+    height:100px;
+    font-size:40px;
+}
