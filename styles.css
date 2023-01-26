@@ -31,7 +31,8 @@
 #equalsButton, 
 .operatorButton, 
 #clearButton,
-#signButton {
+#signButton,
+#decimalButton {
     display:flex;
     justify-content:center;
     align-items:center;

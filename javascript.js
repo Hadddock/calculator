@@ -3,23 +3,26 @@ function add(a, b) {
 }
 
 function subtract(a, b) {
-    return a - b;
+    return ((a*10) - (b*10) )/10;
 }
 
 function multiply(a, b) {
-    return a * b
+    return ((a * 10) * (b * 10)) / 10;
 }
 
 function divide(a, b) {
-    return a / b;
+    return ((a * 10) / (b * 10)) / 10;
 }
 
 function modulo(a, b) {
-    return a % b;
+    return ((a * 10) % (b * 10)) / 10;
 }
 
 function operate(op, a ,b) {
     let result;
+    a = parseFloat(a);
+    b = parseFloat(b);
+
     switch (op) {
         case "+":
             result = add(a, b);
@@ -34,26 +37,35 @@ function operate(op, a ,b) {
             break;
 
         case "/":
+            if (b === 0) {
+                operandOne = undefined;
+                operandTwo = undefined;
+                operator = undefined;
+                display.textContent = "Division by zero";
+                return;
+            }
             result = divide(a, b);
+
             break;
         case "%":
             result = modulo(a, b);
             break;
     }
+
     operandTwo = undefined;
     operator = undefined;
-    operandOne = result;
-    console.log(operator);
+    operandOne = result.toString();
     display.textContent = result;
+    justApplied = true;
     return result;
 }
 
 let operandOne;
 let operandTwo;
 let operator;
+let justApplied = false;
 
 let display = document.querySelector("#display");
-
 
 let equalsButton = document.querySelector("#equalsButton");
 equalsButton.addEventListener("click", e => {
@@ -64,23 +76,27 @@ equalsButton.addEventListener("click", e => {
 let numberButtons = document.querySelectorAll(".numberButton");
 for (let i = 0; i < numberButtons.length; i++) {
     numberButtons[i].addEventListener("click", e => {
+        if (justApplied) {
+            operandOne = undefined;
+        }
         if (!operandOne) {
-            operandOne = parseInt(e.target.textContent);
+            operandOne = e.target.textContent;
             display.textContent = operandOne;
         }
 
         else if (!operator) {
-            operandOne = parseInt(operandOne + e.target.textContent);
+            operandOne +=  e.target.textContent;
             display.textContent = operandOne;
         }
         else if (operator && !operandTwo) {
-            operandTwo = parseInt(e.target.textContent);
+            operandTwo = e.target.textContent;
             display.textContent = operandOne + ` ${operator} ` + operandTwo;
         }
         else {
-            operandTwo = parseInt(operandTwo + e.target.textContent);
+            operandTwo +=  e.target.textContent;
             display.textContent = operandOne + ` ${operator} ` + operandTwo;
         }
+        justApplied = false;
 
     });
 }
@@ -95,6 +111,7 @@ for (let i = 0; i < operatorButtons.length; i++) {
             operator = e.target.textContent;
             display.textContent = operandOne + ` ${operator}`;     
         }
+        justApplied = false;
         
     })
 }
@@ -109,23 +126,44 @@ clearButton.addEventListener("click", e => {
 
 let signButton = document.querySelector("#signButton");
 signButton.addEventListener("click", e => {
+    if (justApplied) {
+        operandOne = undefined;
+    }
     if (!operandOne) {
-        console.log("what gives, no operand one");
-        return;
+        operandOne = "-";
+        display.textContent = operandOne;
     }
 
     else if (!operator) {
-        console.log("what gives, no operator");
-        operandOne *= -1;
+
+        if (operandOne[0] === "-") {
+            operandOne = operandOne.slice(1);
+        }
+
+        else {
+            operandOne = "-" + operandOne ;
+        }
+        
         display.textContent = operandOne;
     }
+        
     else if (operator && !operandTwo) {
-        console.log(operator);
-        console.log("what gives, no operand 2");
-        return;
+        operandTwo = "-";
+        display.textContent = operandOne + ` ${operator} ` + operandTwo;
+
     }
+        
     else {
-        operandTwo *= -1;
+
+        if (operandTwo[0] == "-") {
+            operandTwo = operandTwo.slice(1);
+        }
+        
+        else {
+            operandTwo = "-" + operandTwo ;
+        }
         display.textContent = operandOne + ` ${operator} ` + operandTwo;
     }
+    justApplied = false;
 })
+
