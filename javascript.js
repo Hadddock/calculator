@@ -18,9 +18,9 @@ function modulo(a, b) {
     return a % b;
 }
 
-function operate(operator, a ,b) {
+function operate(op, a ,b) {
     let result;
-    switch (operator) {
+    switch (op) {
         case "+":
             result = add(a, b);
             break;
@@ -43,6 +43,7 @@ function operate(operator, a ,b) {
     operandTwo = undefined;
     operator = undefined;
     operandOne = result;
+    console.log(operator);
     display.textContent = result;
     return result;
 }
@@ -106,3 +107,25 @@ clearButton.addEventListener("click", e => {
     display.textContent = "";
 })
 
+let signButton = document.querySelector("#signButton");
+signButton.addEventListener("click", e => {
+    if (!operandOne) {
+        console.log("what gives, no operand one");
+        return;
+    }
+
+    else if (!operator) {
+        console.log("what gives, no operator");
+        operandOne *= -1;
+        display.textContent = operandOne;
+    }
+    else if (operator && !operandTwo) {
+        console.log(operator);
+        console.log("what gives, no operand 2");
+        return;
+    }
+    else {
+        operandTwo *= -1;
+        display.textContent = operandOne + ` ${operator} ` + operandTwo;
+    }
+})
