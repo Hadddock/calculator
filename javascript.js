@@ -7,11 +7,11 @@ function subtract(a, b) {
 }
 
 function multiply(a, b) {
-    return ((a * 10) * (b * 10)) / 10;
+    return ((a * 10) * (b * 10)) / 100;
 }
 
 function divide(a, b) {
-    return ((a * 10) / (b * 10)) / 10;
+    return ((a * 10) / (b * 10)) ;
 }
 
 function modulo(a, b) {
@@ -54,6 +54,7 @@ function operate(op, a ,b) {
 
     operandTwo = undefined;
     operator = undefined;
+    result = Math.round(result * 10) / 10;
     operandOne = result.toString();
     display.textContent = result;
     justApplied = true;
