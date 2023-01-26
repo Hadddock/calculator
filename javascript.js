@@ -98,3 +98,11 @@ for (let i = 0; i < operatorButtons.length; i++) {
     })
 }
 
+let clearButton = document.querySelector("#clearButton");
+clearButton.addEventListener("click", e => {
+    operandOne = undefined;
+    operandTwo = undefined;
+    operator = undefined;
+    display.textContent = "";
+})
+
