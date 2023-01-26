@@ -7,6 +7,7 @@
     display:flex;
     align-items:center;
     flex-direction:column;
+    
 }
 #display {
     box-sizing: border-box;
@@ -26,7 +27,11 @@
     justify-content:center;
     align-items:center;
 }
-.numberButton, #equalsButton, .operatorButton {
+.numberButton, 
+#equalsButton, 
+.operatorButton, 
+#clearButton,
+#signButton {
     display:flex;
     justify-content:center;
     align-items:center;
@@ -34,4 +39,13 @@
     width:100px;
     height:100px;
     font-size:40px;
+}
+
+#clearButton {
+    width:200px;
+    height:100px;
+}
+
+.operatorButton {
+    background-color:rosybrown;
 }

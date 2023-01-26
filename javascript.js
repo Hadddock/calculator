@@ -84,7 +84,10 @@ for (let i = 0; i < operatorButtons.length; i++) {
         if (operandOne && operandTwo && operator) {
             operate(operator, operandOne, operandTwo);
         }
-        operator = e.target.textContent;
-        display.textContent = operandOne + ` ${operator} `; 
+        else if (operandOne) {
+            operator = e.target.textContent;
+            display.textContent = operandOne + ` ${operator}`;     
+        }
+        
     })
 }
