@@ -14,6 +14,10 @@ function divide(a, b) {
     return a / b;
 }
 
+function modulo(a, b) {
+    return a % b;
+}
+
 function operate(operator, a ,b) {
     let result;
     switch (operator) {
@@ -32,7 +36,9 @@ function operate(operator, a ,b) {
         case "/":
             result = divide(a, b);
             break;
-
+        case "%":
+            result = modulo(a, b);
+            break;
     }
     operandTwo = undefined;
     operator = undefined;
@@ -91,3 +97,4 @@ for (let i = 0; i < operatorButtons.length; i++) {
         
     })
 }
+
